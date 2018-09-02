@@ -10,3 +10,8 @@ cd spotlight-terminal
 npm run build
 ```
 This is just temporary, I know it's a shit way to distribute my app hold on I'll do something.
+
+### Coming Soon
+
+- cli
+- prompt, colour and dark/light mode configuration
