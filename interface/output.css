@@ -1,0 +1,15 @@
+#box {
+
+	font-family: 'Menlo';
+	font-size: 12pt;
+	color: white;
+
+	margin: 20px;
+
+}
+
+#output span {
+
+	white-space: pre-wrap;
+
+}

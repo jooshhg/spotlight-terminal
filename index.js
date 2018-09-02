@@ -9,82 +9,33 @@
 /**
  * Electron api
  */
-const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron');
-
+const { app } = require('electron');
 /**
  * Exec
  */
 const { exec } = require('child_process');
 
 /**
- * Window object
+ * Window manager
  */
-let win;
+const WindowManager = require('./core/WindowManager');
+/**
+ * Windows
+ */
+const OutputWindow = require('./core/OutputWindow');
+const TerminalWindow = require('./core/TerminalWindow');
 
 /**
  * onReady
  */
 function onReady() {
 
-	const ret = globalShortcut.register('Alt+Space', () => {
+	const windowManager = new WindowManager();
 
-		if(win.isVisible()) {
-
-			return win.hide();
-
-		}
-
-		win.show();
-
-    });
-
-	/**
-	 * Browser options
-	 * @type {Object}
-	 */
-	let browserOptions = {
-
-		width: 1280/2,
-		height: 70,
-		frame: false,
-		resizable: false,
-		center: true,
-		alwaysOnTop: true,
-		transperent: true,
-		titleBarStyle: 'customButtonsOnHover',
-		vibrancy: 'dark',
-		moveable: true
-
-	};
-
-	/**
-	 * Create new window with given options
-	 * @type {BrowserWindow}
-	 */
-	win = new BrowserWindow(browserOptions);
-
-	win.on('blur', () => {
-
-		win.hide();
-
-	});
-
-
-	// load index.html in interface
-	win.loadURL(`file://${__dirname}/interface/index.html`);
+	windowManager.create('terminalWindow', TerminalWindow);
+	windowManager.create('outputWindow', OutputWindow);
 
 }
 
-
-ipcMain.on('exec', (e, cmd) => {
-
-
-    exec(cmd, {shell: '/bin/bash'}, () => {
-    	console.log(cmd);
-    });
-
-	win.hide();
-
-});
-
+// run onReady when app is ready
 app.on('ready', onReady);

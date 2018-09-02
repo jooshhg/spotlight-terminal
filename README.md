@@ -13,5 +13,6 @@ This is just temporary, I know it's a shit way to distribute my app hold on I'll
 
 ### Coming Soon
 
-- cli
-- prompt, colour and dark/light mode configuration
+- [x] output window
+- [ ] cli
+- [ ] prompt, colour and dark/light mode configuration
