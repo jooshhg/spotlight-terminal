@@ -7,7 +7,10 @@ Spotlight Terminal is a simple app that gives you the ability to execute termina
 ```
 git clone http://github.com/jooshhg/spotlight-terminal
 cd spotlight-terminal
+npm install .
 npm run build
+cd Spotlight\ Terminal-darwin-x64
+open Spotlight\ Terminal.app
 ```
 This is just temporary, I know it's a shit way to distribute my app hold on I'll do something.
 
