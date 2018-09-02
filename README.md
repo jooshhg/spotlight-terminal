@@ -17,5 +17,5 @@ This is just temporary, I know it's a shit way to distribute my app hold on I'll
 ### Coming Soon
 
 - [x] output window
-- [ ] cli
-- [ ] prompt, colour and dark/light mode configuration
+- [ ] command line tool
+- [ ] config for appearance

@@ -1,6 +1,6 @@
 {
   "name": "spotlight-terminal",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Like spotlight search but for terminal commands",
   "main": "index.js",
   "scripts": {
