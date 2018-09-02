@@ -79,7 +79,9 @@ function onReady() {
 ipcMain.on('exec', (e, cmd) => {
 
 
-    exec(cmd, {shell: '/bin/bash'});
+    exec(cmd, {shell: '/bin/bash'}, () => {
+    	console.log(cmd);
+    });
 
 	win.hide();
 
