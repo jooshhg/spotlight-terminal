@@ -1,0 +1,39 @@
+/**
+ * Spotlight window styling
+ */
+
+body {
+
+}
+
+#terminal {
+
+	margin-top: 16px;
+	margin-left: 10px;
+	padding: 0;
+
+}
+
+#prompt {
+
+	user-select: none;
+
+	font-family: 'Menlo';
+	font-size: 20pt;
+	color: rgb(98,205,226);
+
+}
+
+#line {
+
+	width: 90%;
+
+	font-family: 'Menlo';
+	font-size: 20pt;
+	color: white;
+
+	background: none;
+	outline: none;
+	border: 0px none;
+
+}
