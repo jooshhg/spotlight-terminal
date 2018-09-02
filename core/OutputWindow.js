@@ -68,8 +68,10 @@ class OutputWindow extends BrowserWindow {
 		// prevent close
 		e.preventDefault();
 
+		// send signal to renderer to clear output
 		this.webContents.send('clear');
 
+		// hide window
 		this.hide();
 
 	}
@@ -79,11 +81,15 @@ class OutputWindow extends BrowserWindow {
 	 */
 	moveUnderTerm(win) {
 
+		// find terminal window
 		let terminalWindow = win.windowsManager.get('terminalWindow');
 		
+		// extract terminal window position
 		let termPos = terminalWindow.getPosition();
+		// extract terminal height
 		let termHeight = terminalWindow.getSize()[1];
 
+		// update output window position according to terminal
 		win.setPosition(termPos[0], termPos[1] + termHeight + 10);
 
 	}
@@ -93,8 +99,10 @@ class OutputWindow extends BrowserWindow {
 	 */
 	onCommandOutput(output, win) {
 
+		// show window
 		win.show();
 
+		// send signal to renderer to update the output
 		win.webContents.send('updateOutput', output);
 
 	}

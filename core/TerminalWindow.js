@@ -11,9 +11,9 @@ const { BrowserWindow, ipcMain, globalShortcut } = require('electron');
  */
 const path = require('path');
 /**
- * Spawn
+ * Exec
  */
-const { spawn } = require('child_process');
+const { exec } = require('child_process');
 
 /**
  * Terminal window class
@@ -80,6 +80,7 @@ class TerminalWindow extends BrowserWindow {
 		// prevent close
 		e.preventDefault();
 
+		// hide window
 		this.hide();
 
 	}
@@ -90,36 +91,30 @@ class TerminalWindow extends BrowserWindow {
 	 * @param {Object} e event
 	 * @param {string} cmd Command to execute
 	 */
-	onExec(e, command, win) {
+	onExec(e, cmd, win) {
 
-		let opts = {
-			shell: '/bin/sh',
-			env: process.env
-		};
+		// enable noAsar
+		process.noAsar = true;
 
-		let cmd = spawn(command, opts);
-
+		// get output window
 		let outputWindow = win.windowsManager.get('outputWindow');
 
-		let wasoutput = false;
+		// execute command
+		exec(cmd, undefined, (err, stdout, stderr) => {
 
-		cmd.stdout.on('data', data => {
-			wasoutput = true;
-			outputWindow.onCommandOutput(data, outputWindow);
+			// if no error, continue
+			if(err) return;
+
+			// if there was an stdout or stderr
+			if(stdout != "" || stderr != "") {
+
+				// send stderror or stdout to output window
+				outputWindow.onCommandOutput(stdout != "" ? stdout : stderr, outputWindow);
+
+			}
+
+
 		});
-
-		cmd.stderr.on('data', data => {
-			wasoutput = true;
-			outputWindow.onCommandOutput(data, outputWindow);
-		});
-
-		cmd.on('close', () => {
-
-			if(!wasoutput) win.hide();
-
-			cmd = null;
-
-		})
 
 	}
 

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jooshhg/spotlight-terminal#readme",
   "dependencies": {
     "electron-drag": "^1.2.2",
+    "exec": "^0.2.1",
     "yarn": "^1.9.4"
   },
   "devDependencies": {
